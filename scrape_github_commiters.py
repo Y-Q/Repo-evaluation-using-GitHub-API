@@ -50,18 +50,7 @@ for item in repo_list:
 plt.legend([item[1] for item in repo_list])
 plt.ylabel('Code activity', fontsize = 14)
 plt.xlabel('Date of observation', fontsize = 14)
-plt.title('Comparison of code activities', fontsize = 18)
-
-# commit history plot
-repo_list = [('druid-io','druid'), ('apache','kafka'), ('apache','storm'), ('amplab','tachyon'), ('apache','spark'), ('docker','docker'), ('mbostock','d3'),('apache','samza')]
-color=iter(plt.cm.rainbow(np.linspace(0,1,len(repo_list))))
-for item in repo_list:    
-    c=next(color)
-    plt.plot(range(1,len(commit_monthly_dict[item[1]])+1),commit_monthly_dict[item[1]]['commits'], c=c)
-plt.legend([item[1] for item in repo_list])
-plt.ylabel('Total # of commits', fontsize = 14)
-plt.xlabel('# of month since the beginning of repo', fontsize = 14)
-plt.title('Comparison of # of commits', fontsize = 18)
+plt.title('Graph 1. Comparison of code activity ~ time', fontsize = 18)
 
 # code activity history plot
 
@@ -71,20 +60,20 @@ for item in repo_list:
     plt.plot(range(1,len(commit_monthly_dict[item[1]])+1),commit_monthly_dict[item[1]]['code_activity'], c=c)
 plt.legend([item[1] for item in repo_list])
 plt.ylabel('Code activity', fontsize = 14)
-plt.xlabel('# of month since the beginning of repo', fontsize = 14)
-plt.title('Comparison of code activities', fontsize = 18)
+plt.xlabel('Number of month since the beginning of repo', fontsize = 14)
+plt.title('Graph 2. Comparison of code activitity ~ development stage', fontsize = 18)
 
-
-# contributor history plot
-
+# commit history plot
+repo_list = [('druid-io','druid'), ('amplab','tachyon'), ('apache','kafka'), ('apache','storm'), ('apache','spark'),('apache','samza'), ('docker','docker'), ('mbostock','d3')]
 color=iter(plt.cm.rainbow(np.linspace(0,1,len(repo_list))))
 for item in repo_list:    
     c=next(color)
-    plt.plot(range(1,len(contributor_monthly_dict[item[1]])+1),contributor_monthly_dict[item[1]]['contributors'], c=c)
+    plt.plot(range(1,len(commit_monthly_dict[item[1]])+1),commit_monthly_dict[item[1]]['commits'], c=c)
 plt.legend([item[1] for item in repo_list])
-plt.ylabel('# of contributors', fontsize = 14)
-plt.xlabel('# of month since the beginning of repo', fontsize = 14)
-plt.title('Comparison of contributor growth', fontsize = 18)
+plt.ylabel('Total number of commits', fontsize = 14)
+plt.xlabel('Number of month since the beginning of repo', fontsize = 14)
+plt.title('Graph 3. Comparison of number of commits', fontsize = 18)
+
 
 ### FUNCTIONS ----------------------------------------------------------------------------
 

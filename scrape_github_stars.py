@@ -25,31 +25,16 @@ for user, repo in repo_list:
     star_history_dict[repo] = star_history_list(user, repo)
     monthly_star_total[repo] = star_monthly_list(star_history_dict[repo])
 
-# save github data to cvs
-
-for key in star_history_dict:
-    star_history_dict[key].to_csv('star_history_'+ key + '.csv')
-
 # plots
-repo_list = [('druid-io','druid'), ('apache','kafka'), ('amplab','tachyon'), ('apache','mesos')]
-color=iter(plt.cm.rainbow(np.linspace(0,1,len(repo_list))))
-for item in repo_list:    
-    c=next(color)   
-    plt.plot(monthly_star_total[item[1]].index,monthly_star_total[item[1]], c=c)
-plt.legend([item[1] for item in repo_list])
-plt.xticks(rotation=70)
-plt.ylabel('Total # of stars', fontsize = 14)
-plt.xlabel('Date of observation', fontsize = 14)
-plt.title('Comparison of # of stars', fontsize = 18)
 
 color=iter(plt.cm.rainbow(np.linspace(0,1,len(repo_list))))
 for item in repo_list:    
     c=next(color)
     plt.plot(range(1,len(monthly_star_total[item[1]])+1),monthly_star_total[item[1]], c=c)
 plt.legend([item[1] for item in repo_list])
-plt.ylabel('Total # of stars', fontsize = 14)
-plt.xlabel('# of month since the beginning of repo', fontsize = 14)
-plt.title('Comparison of # of stars', fontsize = 18)
+plt.ylabel('Total number of stars', fontsize = 14)
+plt.xlabel('Number of month since the beginning of repo', fontsize = 14)
+plt.title('Graph 4. Comparison of number of stars', fontsize = 18)
 
 ### FUNCTIONS ----------------------------------------------------------------------------
 
